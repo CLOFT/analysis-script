@@ -1,13 +1,12 @@
 // import services
 import braceletsData from './bracelets-data.js';
 import users from './users.js';
+import alarms from './alarms.js';
 
 const calculateAvgSteps = async (steps, length) => {
   let sum = steps.reduce((pv, v) => pv + v, 0);
   return Math.round(sum / length);
 };
-
-const countAlarms = async (alarms) => alarms.length;
 
 const countIngestedData = async (data) => parseInt(data.length);
 
@@ -21,7 +20,7 @@ export const analyseData = async () => {
 
   const avgSteps = await calculateAvgSteps(stepsValues, ingestedData);
 
-  const alarmsCount = await countAlarms(data.filter((d) => d.alarm != null));
+  const alarmsCount = await alarms.countAlarms();
 
   const commonUsersCount = await users.countCommonUsers();
   const adminUsersCount = await users.countAdminUsers();

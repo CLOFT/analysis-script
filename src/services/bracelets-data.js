@@ -5,7 +5,9 @@ import { constants } from '../config/index.js';
 const getLastDayData = async () => {
   let data = null;
   try {
-    let result = await axios.get(constants.API_GATEWAY + 'BraceletsData?method=lastDay');
+    let result = await axios.get(
+      constants.API_GATEWAY + 'BraceletsData?method=lastDay'
+    );
     data = result.data;
   } catch (error) {
     console.log(error);

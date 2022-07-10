@@ -112,4 +112,7 @@ dist
 # prettier config
 .prettierrc
 
-**tmp/**
+**tmp/
+
+# Macbook folders
+.DS_STORE

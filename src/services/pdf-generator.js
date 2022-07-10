@@ -14,38 +14,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const tmpPath = path.join(__dirname, '../', 'tmp');
 
-const getHtml = async () => {
+const getHtml = async (filePath) => {
   let data;
 
   try {
-    data = fs.readFileSync(
-      path.join(__dirname, '..', 'static', 'template.html'),
-      'utf8'
-    );
+    data = fs.readFileSync(filePath, 'utf8');
   } catch (err) {
     console.error(err);
   }
   return data;
-};
-
-const saveTmpFile = async (htmlContent) => {
-  if (!checkIfDirAlreadyExists(tmpPath)) fs.mkdirSync(tmpPath);
-  fs.writeFileSync(path.join(tmpPath, 'index.html'), htmlContent, {
-    encoding: 'utf-8',
-  });
-};
-
-const removeTmpFile = async (filePath) => {
-  fs.unlinkSync(filePath);
-};
-
-const checkIfDirAlreadyExists = (dir) => fs.existsSync(dir);
-
-const generatePdf = async (data) => {
-  const templateContent = await getHtml();
-  const html = await replaceTemplatePlaceholders(templateContent, data);
-  await saveTmpFile(html);
-  await removeTmpFile(path.join(tmpPath, 'index.html'));
 };
 
 const replaceTemplatePlaceholders = async (template, data) => {
@@ -59,7 +36,45 @@ const replaceTemplatePlaceholders = async (template, data) => {
     .replace('{{date}}', data.date);
 };
 
+const checkIfPathExists = (dir) => fs.existsSync(dir);
 
-export default {
-  generatePdf,
+const _generatePdf = (outputHtml) => {
+  const date = new Date().toISOString();
+  const options = {
+    format: 'A3',
+    renderDelay: 3000,
+  };
+  if (!checkIfPathExists(tmpPath)) fs.mkdirSync(tmpPath);
+  pdf
+    .create(outputHtml, options)
+    .toFile(
+      path.join(tmpPath, constants.OUTPUT_FILE + fileDate + '.pdf'),
+      function (err, res) {
+        if (err) return console.log(err);
+        console.log(res);
+      }
+    );
+  return date;
 };
+
+const deleteReport = async (fileDate) => {
+  const filePath = path.join(
+    tmpPath,
+    constants.OUTPUT_FILE + fileDate + '.pdf'
+  );
+  // first check if generated
+  let checkExists = false;
+  while (!checkExists) checkExists = checkIfPathExists(filePath);
+  fs.unlinkSync(filePath);
+};
+
+const generatePdf = async (data) => {
+  const templateContent = await getHtml(
+    path.join(__dirname, '..', 'static', 'template.html')
+  );
+  const html = await replaceTemplatePlaceholders(templateContent, data);
+  const fileDate = _generatePdf(html);
+  return fileDate;
+};
+
+export { generatePdf, deleteReport };

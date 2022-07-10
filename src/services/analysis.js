@@ -1,7 +1,8 @@
 // import services
 import braceletsData from './bracelets-data.js';
 import users from './users.js';
-import alarms from './alarms.js';
+import { default as alarmsService } from './alarms.js';
+import { generatePdf, deleteReport } from './pdf-generator.js';
 
 const calculateAvgSteps = async (steps, length) => {
   let sum = steps.reduce((pv, v) => pv + v, 0);
@@ -12,24 +13,31 @@ const countIngestedData = async (data) => parseInt(data.length);
 
 export const analyseData = async () => {
   console.log('Retrieving last day data ...');
-  const data = await braceletsData.getLastDayData();
+  const lastDayData = await braceletsData.getLastDayData();
 
-  const ingestedData = await countIngestedData(data);
+  const dataIngested = await countIngestedData(lastDayData);
 
-  const stepsValues = data.map((d) => d.steps);
+  const stepsValues = lastDayData.map((d) => d.steps);
 
   const avgSteps = await calculateAvgSteps(stepsValues, ingestedData);
 
-  const alarmsCount = await alarms.countAlarms();
+  const alarms = await alarmsService.countAlarms();
 
-  const commonUsersCount = await users.countCommonUsers();
-  const adminUsersCount = await users.countAdminUsers();
+  const commonUsers = await users.countCommonUsers();
+  const admins = await users.countAdminUsers();
 
-  return {
-    ingestedData,
+  // Generate PDF
+  const data = {
+    dataIngested,
     avgSteps,
-    alarmsCount,
-    commonUsersCount,
-    adminUsersCount,
+    alarms,
+    commonUsers,
+    admins,
   };
+
+  const fileDate = await generatePdf(data);
+
+  // TODO : save report into S3 Bucket under reports/
+
+  await deleteReport(fileDate);
 };

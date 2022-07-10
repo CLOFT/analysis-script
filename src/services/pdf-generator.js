@@ -39,7 +39,7 @@ const replaceTemplatePlaceholders = async (template, data) => {
 const checkIfPathExists = (dir) => fs.existsSync(dir);
 
 const _generatePdf = (outputHtml) => {
-  const date = new Date().toISOString();
+  const date = new Date().toISOString().split('T')[0];
   const options = {
     format: 'A3',
     renderDelay: 3000,

@@ -3,6 +3,12 @@ import braceletsData from './bracelets-data.js';
 import users from './users.js';
 import { default as alarmsService } from './alarms.js';
 import { generatePdf, deleteReport } from './pdf-generator.js';
+import s3 from './s3.js';
+
+// constants
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const tmpPath = path.join(__dirname, '../', 'tmp');
 
 const calculateAvgSteps = async (steps, length) => {
   let sum = steps.reduce((pv, v) => pv + v, 0);
@@ -37,7 +43,8 @@ export const analyseData = async () => {
 
   const fileDate = await generatePdf(data);
 
-  // TODO : save report into S3 Bucket under reports/
+  // save report into S3 Bucket under reports/
+  await s3.uploadToS3(path.join(tmpPath, fileDate));
 
   await deleteReport(fileDate);
 };

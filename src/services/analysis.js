@@ -1,3 +1,6 @@
+// load env
+import { constants } from '../config/index.js';
+
 // import services
 import braceletsData from './bracelets-data.js';
 import users from './users.js';
@@ -44,7 +47,7 @@ export const analyseData = async () => {
   const fileDate = await generatePdf(data);
 
   // save report into S3 Bucket under reports/
-  await s3.uploadToS3(path.join(tmpPath, fileDate));
+  await s3.uploadToS3(path.join(tmpPath, constants.OUTPUT_FILE + fileDate));
 
   await deleteReport(fileDate);
 };

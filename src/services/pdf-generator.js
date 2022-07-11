@@ -73,6 +73,7 @@ const generatePdf = async (data) => {
     path.join(__dirname, '..', 'static', 'template.html')
   );
   const html = await replaceTemplatePlaceholders(templateContent, data);
+  console.log('Generating pdf ...');
   const fileDate = _generatePdf(html);
   return fileDate;
 };

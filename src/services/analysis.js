@@ -79,7 +79,7 @@ export const analyseData = async () => {
   const fileDate = await generatePdf(data);
 
   // save report into S3 Bucket under reports/
-  await s3.uploadToS3(path.join(tmpPath, constants.OUTPUT_FILE + fileDate));
+  await s3.uploadToS3(path.join(tmpPath, constants.OUTPUT_FILE + fileDate + '.pdf'));
 
   await deleteReport(fileDate);
 

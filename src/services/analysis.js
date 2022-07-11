@@ -8,6 +8,7 @@ import users from './users.js';
 import { default as alarmsService } from './alarms.js';
 import { generatePdf, deleteReport } from './pdf-generator.js';
 import s3 from './s3.js';
+import { getHoroscopeBySign } from '../bin/index.js';
 
 // node-core modules
 import path from 'path';
@@ -74,6 +75,12 @@ export const analyseData = async () => {
     let user = await users.getUser(b.username);
     // TODO : retrieve zodiac sign by birth date
     let sign = getUserZodiacSign(user);
+
+    // Call horoscope API
+    let sentence = await getHoroscopeBySign(sign);
   }
 };
 
+(async () => {
+  await getHoroscopeBySign('libra');
+})();

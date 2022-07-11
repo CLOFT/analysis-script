@@ -60,7 +60,7 @@ export const analyseData = async () => {
 
   const stepsValues = lastDayData.map((d) => d.steps);
 
-  const avgSteps = await calculateAvgSteps(stepsValues, ingestedData);
+  const avgSteps = await calculateAvgSteps(stepsValues, dataIngested);
 
   const alarms = await alarmsService.countAlarms();
 

@@ -28,6 +28,7 @@ const getSentiment = async (sentence) => {
   try {
     const command = new DetectSentimentCommand(input);
     response = await client.send(command);
+    console.log('Comprehend res: ', response);
   } catch (error) {
     console.log('Error: ', error);
   } finally {

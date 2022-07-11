@@ -6,7 +6,7 @@ import axios from 'axios';
 const getAssociatedBracelets = async () => {
   let bracelets;
   try {
-    let result = await axios.get(constants.API_GATEWAY + 'Bracelets/');
+    let result = await axios.get(constants.API_GATEWAY + 'Bracelets');
     bracelets = result.data;
     bracelets = bracelets.filter((b) => b.username != null);
   } catch (error) {
@@ -19,7 +19,7 @@ const getAssociatedBracelets = async () => {
 const updateBraceletSerendipity = async (bracelet) => {
   let data;
   try {
-    let result = await axios.put(constants.API_GATEWAY + 'Bracelets/');
+    let result = await axios.put(constants.API_GATEWAY + 'Bracelets');
     data = result.data;
   } catch (error) {
     console.log(error);
@@ -29,5 +29,5 @@ const updateBraceletSerendipity = async (bracelet) => {
 };
 export default {
   getAssociatedBracelets,
-  updateBraceletSerendipity
+  updateBraceletSerendipity,
 };

@@ -6,7 +6,11 @@ import braceletsData from './bracelets-data.js';
 import bracelets from './bracelets.js';
 import users from './users.js';
 import { default as alarmsService } from './alarms.js';
-import { generatePdf, deleteReport } from './pdf-generator.js';
+import {
+  generatePdf,
+  deleteReport,
+  replaceTemplatePlaceholders,
+} from './pdf-generator.js';
 import s3 from './s3.js';
 import { getHoroscopeBySign, lowerKeysObject } from '../bin/index.js';
 import sentiment from './sentiment.js';
@@ -76,12 +80,12 @@ export const analyseData = async () => {
     admins,
   };
 
-  const fileDate = await generatePdf(data);
-
+  // const fileDate = await generatePdf(data);
+  const html = await generatePdf(data);
   // save report into S3 Bucket under reports/
-  await s3.uploadToS3(path.join(tmpPath, constants.OUTPUT_FILE + fileDate + '.pdf'));
+  await s3.uploadToS3(html);
 
-  await deleteReport(fileDate);
+  // await deleteReport(fileDate);
 
   // TODO : calculate serendipity by user horoscope
   const associatedBracelets = await bracelets.getAssociatedBracelets();

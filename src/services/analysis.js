@@ -3,6 +3,7 @@ import { constants } from '../config/index.js';
 
 // import services
 import braceletsData from './bracelets-data.js';
+import bracelets from './bracelets.js';
 import users from './users.js';
 import { default as alarmsService } from './alarms.js';
 import { generatePdf, deleteReport } from './pdf-generator.js';
@@ -50,4 +51,7 @@ export const analyseData = async () => {
   await s3.uploadToS3(path.join(tmpPath, constants.OUTPUT_FILE + fileDate));
 
   await deleteReport(fileDate);
+
+  // TODO : calculate serendipity by user horoscope
+  const associatedBracelets = await bracelets.getAssociatedBracelets();
 };

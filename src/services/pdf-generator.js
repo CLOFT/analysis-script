@@ -47,21 +47,15 @@ const _generatePdf = (outputHtml) => {
   if (!checkIfPathExists(tmpPath)) fs.mkdirSync(tmpPath);
   pdf
     .create(outputHtml, options)
-    .toFile(
-      path.join(tmpPath, "_report" + date + '.pdf'),
-      function (err, res) {
-        if (err) return console.log(err);
-        console.log(res);
-      }
-    );
+    .toFile(path.join(tmpPath, '_report' + date + '.pdf'), function (err, res) {
+      if (err) return console.log(err);
+      console.log(res);
+    });
   return date;
 };
 
 const deleteReport = async (fileDate) => {
-  const filePath = path.join(
-    tmpPath,
-    "_report" + date + '.pdf'
-  );
+  const filePath = path.join(tmpPath, '_report' + date + '.pdf');
   // first check if generated
   let checkExists = false;
   while (!checkExists) checkExists = checkIfPathExists(filePath);
@@ -76,21 +70,5 @@ const generatePdf = async (data) => {
   const fileDate = _generatePdf(html);
   return fileDate;
 };
-
-
-
-
-(async() =>
-{
-await generatePdf({
-// coppie chiave valore 
-     date : "2022-07-11",
-     dataIngested : 120,
-     avgSteps: 6540,
-     alarms: 4,
-     commonUsers: 400,
-     admins: 4
-})
-})()
 
 export { generatePdf, deleteReport };

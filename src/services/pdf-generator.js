@@ -12,7 +12,7 @@ import pdf from 'html-pdf';
 // constants
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const tmpPath = path.join(__dirname, '../', 'tmp');
+const tmpPath = '/tmp';
 
 const getHtml = async (filePath) => {
   let data;
@@ -48,7 +48,7 @@ const _generatePdf = (outputHtml) => {
   pdf
     .create(outputHtml, options)
     .toFile(
-      path.join(tmpPath, constants.OUTPUT_FILE + fileDate + '.pdf'),
+      path.join(tmpPath, constants.OUTPUT_FILE + date + '.pdf'),
       function (err, res) {
         if (err) return console.log(err);
         console.log(res);

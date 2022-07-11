@@ -22,7 +22,7 @@ const zodiac = zodiacModule();
 // constants
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const tmpPath = path.join(__dirname, '../', 'tmp');
+const tmpPath = '/tmp';
 
 const calculateAvgSteps = async (steps, length) => {
   let sum = steps.reduce((pv, v) => pv + v, 0);

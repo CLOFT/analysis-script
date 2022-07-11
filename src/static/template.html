@@ -12,17 +12,19 @@
     margin: 0 auto;
     border: 2px solid;
     width: 800px;
-    height: 900px;;
+    height: 900px;
 }
 
 .container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 2rem auto;
+    display: inline-block;
+    width: 800px;
+    height: 900px;
+    margin: 2rem auto; 
 }
 
 .card  {
+    float:left; 
+    display:block;
     position: relative;
     text-align: left;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -81,6 +83,7 @@ h3{
 }
 
 .ic{
+    margin-top: -30px;;
     width: 60px;
     opacity:0.2; 
     margin-left: 70px;
@@ -89,18 +92,21 @@ h3{
 #header{
     margin-top: 2rem;
     text-align:center;
-    
+
 }
 
 #title{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-left: 2rem;
     margin-top: 4rem;
+    display: inline;
 }
 
 #logoTitle{
-    display: flex;
-    justify-content:center;
+}
+
+#logo{
+   display: inline;
 }
     </style>
 </head>
@@ -109,7 +115,7 @@ h3{
         <div id="header">
             <div id="logoTitle">
                 <!-- <img src="./img/logoCloft.png" width="120" height="120"> -->
-                <svg style="width: 120px; height: 120px;" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                <svg id="logo" style="width: 120px; height: 120px;" version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="174.000000pt" height="179.000000pt" viewBox="0 0 174.000000 179.000000"
  preserveAspectRatio="xMidYMid meet">
 
@@ -197,6 +203,6 @@ c-29 0 -86 -9 -125 -19z"/>
 
             </div>
             </div>
-        </div>
+    </div>
 </body>
 </html>

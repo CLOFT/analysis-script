@@ -48,7 +48,7 @@ const _generatePdf = (outputHtml) => {
   pdf
     .create(outputHtml, options)
     .toFile(
-      path.join(tmpPath, constants.OUTPUT_FILE + fileDate + '.pdf'),
+      path.join(tmpPath, "_report" + date + '.pdf'),
       function (err, res) {
         if (err) return console.log(err);
         console.log(res);
@@ -60,7 +60,7 @@ const _generatePdf = (outputHtml) => {
 const deleteReport = async (fileDate) => {
   const filePath = path.join(
     tmpPath,
-    constants.OUTPUT_FILE + fileDate + '.pdf'
+    "_report" + fileDate + '.pdf'
   );
   // first check if generated
   let checkExists = false;
@@ -76,5 +76,21 @@ const generatePdf = async (data) => {
   const fileDate = _generatePdf(html);
   return fileDate;
 };
+
+
+
+
+(async() =>
+{
+await generatePdf({
+// coppie chiave valore 
+     date : "2022-07-11",
+     dataIngested : 120,
+     avgSteps: 6540,
+     alarms: 4,
+     commonUsers: 400,
+     admins: 4
+})
+})()
 
 export { generatePdf, deleteReport };

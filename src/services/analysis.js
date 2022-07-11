@@ -9,6 +9,14 @@ import { default as alarmsService } from './alarms.js';
 import { generatePdf, deleteReport } from './pdf-generator.js';
 import s3 from './s3.js';
 
+// node-core modules
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// import zodiac sign npm
+import zodiacModule from 'zodiac-signs';
+const zodiac = zodiacModule();
+
 // constants
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,6 +28,13 @@ const calculateAvgSteps = async (steps, length) => {
 };
 
 const countIngestedData = async (data) => parseInt(data.length);
+
+const getUserZodiacSign = (user) => {
+  let birthMonth = user.birth.split('-')[1];
+  let birthDay = user.birth.split('-')[2];
+  let sign = zodiac.getSignByDate({ day: birthDay, month: birthMonth });
+  return sign;
+};
 
 export const analyseData = async () => {
   console.log('Retrieving last day data ...');
@@ -54,4 +69,11 @@ export const analyseData = async () => {
 
   // TODO : calculate serendipity by user horoscope
   const associatedBracelets = await bracelets.getAssociatedBracelets();
+
+  for (const b of associatedBracelets) {
+    let user = await users.getUser(b.username);
+    // TODO : retrieve zodiac sign by birth date
+    let sign = getUserZodiacSign(user);
+  }
 };
+

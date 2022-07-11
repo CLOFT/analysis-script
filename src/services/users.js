@@ -46,5 +46,6 @@ const countAdminUsers = async () => {
 
 export default {
   countAdminUsers,
+  getUser,
   countCommonUsers,
 };

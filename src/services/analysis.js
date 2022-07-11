@@ -8,7 +8,7 @@ import users from './users.js';
 import { default as alarmsService } from './alarms.js';
 import { generatePdf, deleteReport } from './pdf-generator.js';
 import s3 from './s3.js';
-import { getHoroscopeBySign } from '../bin/index.js';
+import { getHoroscopeBySign, lowerKeysObject } from '../bin/index.js';
 import sentiment from './sentiment.js';
 
 // node-core modules
@@ -27,6 +27,20 @@ const tmpPath = path.join(__dirname, '../', 'tmp');
 const calculateAvgSteps = async (steps, length) => {
   let sum = steps.reduce((pv, v) => pv + v, 0);
   return Math.round(sum / length);
+};
+
+const getSerendipity = (sentimentResponse) => {
+  console.log('Retrieving serendipity ...');
+  // Lowercase all sentiment types es. Positive -> positive
+  // for fast elaboration
+  sentimentResponse.sentimentScore = lowerKeysObject(
+    sentimentResponse.sentimentScore
+  );
+  sentimentResponse.sentiment = sentimentResponse.sentiment.toLowerCase();
+  let serendipity =
+    sentimentResponse.sentimentScore[sentimentResponse.sentiment];
+
+  return serendipity ?? null;
 };
 
 const countIngestedData = async (data) => parseInt(data.length);
@@ -83,6 +97,8 @@ export const analyseData = async () => {
     // Retrieve sentiment value with AWS Commprehend
     let sentimentResponse = await sentiment.getSentiment(sentence);
 
-    // TODO : update serendipity of bracelet
+    // Get and update serendipity of bracelet
+    b.serendipity = getSerendipity(sentimentResponse);
+    await bracelets.updateBraceletSerendipity(b);
   }
 };

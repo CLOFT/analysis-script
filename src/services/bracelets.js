@@ -16,6 +16,18 @@ const getAssociatedBracelets = async () => {
   }
 };
 
+const updateBraceletSerendipity = async (bracelet) => {
+  let data;
+  try {
+    let result = await axios.put(constants.API_GATEWAY + 'Bracelets/');
+    data = result.data;
+  } catch (error) {
+    console.log(error);
+  } finally {
+    return data ?? null;
+  }
+};
 export default {
   getAssociatedBracelets,
+  updateBraceletSerendipity
 };

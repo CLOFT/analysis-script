@@ -18,17 +18,18 @@ const s3Client = new S3({
   },
 });
 
-const uploadToS3 = async (filePath) => {
-  const file = filePath; // Path to and name of object. For example '../myFiles/index.js'.
-  const fileStream = fs.createReadStream(file);
+const uploadToS3 = async (html) => {
+  // const file = filePath; // Path to and name of object. For example '../myFiles/index.js'.
+  // const fileStream = fs.createReadStream(file);
 
   // Set the parameters
   const uploadParams = {
     Bucket: constants.S3_BUCKET,
     // Add the required 'Key' parameter using the 'path' module.
-    Key: `reports/${path.basename(file)}`,
+    Key: `reports/${constants.OUTPUT_FILE}${new Date().toISOString().split('T')[0]}.html`,
     // Add the required 'Body' parameter
-    Body: fileStream,
+    Body: html,
+    ContentType: 'text/html',
   };
 
   try {

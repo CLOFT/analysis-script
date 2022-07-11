@@ -6,8 +6,6 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// npm to generate pdf from html
-import pdf from 'html-pdf';
 
 // constants
 const __filename = fileURLToPath(import.meta.url);
@@ -38,29 +36,28 @@ const replaceTemplatePlaceholders = async (template, data) => {
 
 const checkIfPathExists = (dir) => fs.existsSync(dir);
 
-const _generatePdf = (outputHtml) => {
+const _generatePdf = async (outputHtml) => {
   const date = new Date().toISOString().split('T')[0];
-  const options = {
-    format: 'A3',
-    renderDelay: 3000,
-  };
-  if (!checkIfPathExists(tmpPath)) fs.mkdirSync(tmpPath);
-  pdf
-    .create(outputHtml, options)
-    .toFile(
-      path.join(tmpPath, constants.OUTPUT_FILE + date + '.pdf'),
-      function (err, res) {
-        if (err) return console.log(err);
-        console.log(res);
-      }
-    );
-  return date;
+
+  // const file = {
+  //   content: outputHtml,
+  // };
+
+  // // const options = {
+  // //   format: 'A4',
+  // //   path: path.join(tmpPath, constants.OUTPUT_FILE + date + '.pdf'),
+  // // };
+
+  // console.log('Generating pdf ...');
+  // const buffer = await htmlPdf.generatePdf(file, options);
+  // console.log('Buffer created', buffer);
+  // return date;
 };
 
 const deleteReport = async (fileDate) => {
   const filePath = path.join(
     tmpPath,
-    constants.OUTPUT_FILE + fileDate + '.pdf'
+    constants.OUTPUT_FILE + fileDate + '.html'
   );
   // first check if generated
   let checkExists = false;
@@ -73,9 +70,10 @@ const generatePdf = async (data) => {
     path.join(__dirname, '..', 'static', 'template.html')
   );
   const html = await replaceTemplatePlaceholders(templateContent, data);
-  console.log('Generating pdf ...');
-  const fileDate = _generatePdf(html);
-  return fileDate;
+  return html;
+  // console.log('Generating pdf ...');
+  // const fileDate = _generatePdf(html);
+  // return fileDate;
 };
 
-export { generatePdf, deleteReport };
+export { generatePdf, deleteReport, replaceTemplatePlaceholders };

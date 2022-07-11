@@ -21,6 +21,19 @@ const getUsers = async () => {
   }
 };
 
+const getUser = async (username) => {
+  let user;
+  try {
+    console.log('Retrieving users ...');
+    let result = await axios.get(constants.API_GATEWAY + 'Users/' + username);
+    user = result.data;
+  } catch (error) {
+    console.log(error);
+  } finally {
+    return user ?? null;
+  }
+};
+
 const countCommonUsers = async () => {
   const users = await getUsers();
   return users.filter((u) => u.role == COMMON_ROLE).length;

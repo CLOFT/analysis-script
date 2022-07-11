@@ -41,7 +41,7 @@ const checkIfPathExists = (dir) => fs.existsSync(dir);
 const _generatePdf = (outputHtml) => {
   const date = new Date().toISOString().split('T')[0];
   const options = {
-    format: 'A3',
+    format: 'A4',
     renderDelay: 3000,
   };
   if (!checkIfPathExists(tmpPath)) fs.mkdirSync(tmpPath);
@@ -60,7 +60,7 @@ const _generatePdf = (outputHtml) => {
 const deleteReport = async (fileDate) => {
   const filePath = path.join(
     tmpPath,
-    "_report" + fileDate + '.pdf'
+    "_report" + date + '.pdf'
   );
   // first check if generated
   let checkExists = false;

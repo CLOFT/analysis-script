@@ -9,6 +9,7 @@ import { default as alarmsService } from './alarms.js';
 import { generatePdf, deleteReport } from './pdf-generator.js';
 import s3 from './s3.js';
 import { getHoroscopeBySign } from '../bin/index.js';
+import sentiment from './sentiment.js';
 
 // node-core modules
 import path from 'path';
@@ -73,14 +74,15 @@ export const analyseData = async () => {
 
   for (const b of associatedBracelets) {
     let user = await users.getUser(b.username);
-    // TODO : retrieve zodiac sign by birth date
+    // retrieve zodiac sign by birth date
     let sign = getUserZodiacSign(user);
 
     // Call horoscope API
     let sentence = await getHoroscopeBySign(sign);
+
+    // Retrieve sentiment value with AWS Commprehend
+    let sentimentResponse = await sentiment.getSentiment(sentence);
+
+    // TODO : update serendipity of bracelet
   }
 };
-
-(async () => {
-  await getHoroscopeBySign('libra');
-})();

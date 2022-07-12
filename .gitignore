@@ -108,3 +108,11 @@ dist
 
 #vscode folder
 **/.vscode/
+
+# prettier config
+.prettierrc
+
+**tmp/
+
+# Macbook folders
+.DS_STORE

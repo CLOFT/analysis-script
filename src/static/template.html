@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report </title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <!-- <script src="https://kit.fontawesome.com/bb21bdf6ed.js" crossorigin="anonymous"></script> -->
+    <style>
+        .main{
+    margin: 0 auto;
+    width: 700px;
+    height: 1000px;
+}
+
+.container{
+    display: inline-block;
+    width: 680px;
+    height: 800px;
+}
+
+.card  {
+    float:left; 
+    display:block;
+    position: relative;
+    text-align: left;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 15rem;
+    height: 8rem;
+    margin-top: 5rem;
+    margin-left: 4rem;
+    border-radius: 5%;
+    box-shadow: 5px 10px 8px #888888; 
+    background-color: rgb(105, 195, 198); 
+}
+
+h3{
+    color: whitesmoke;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.toolTip{
+    text-align: center;
+    width:5rem;
+    height:5rem;
+    border-radius: 50%;
+    background-color: rgb(125, 127, 176);
+    position: absolute;
+    left: 12rem;
+    bottom: 1rem;
+    box-shadow: 5px 10px 8px #888888; 
+}
+
+.toolTipDate{
+    text-align: center;
+    width:10rem;
+    height:3rem;
+    border-radius: 5%;
+    background-color: rgb(125, 127, 176);
+    position: absolute;
+    left: 6rem;
+    bottom: 6rem;
+    box-shadow: 5px 10px 8px #888888; 
+}
+
+.value{
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 2rem;
+}
+
+.valueDate{
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 1rem;
+}
+
+.ic{
+    margin-top: -30px;;
+    width: 60px;
+    opacity:0.2; 
+    margin-left: 70px;
+}
+
+#header{
+    margin-top: 2rem;
+    text-align:center;
+
+}
+
+#title{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 2rem;
+    margin-top: 4rem;
+    display: inline;
+}
+
+#logoTitle{
+    margin: 0px;
+}
+
+#logo{
+   display: inline;
+}
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div id="header">
+            <div id="logoTitle">
+                <!-- <img src="./img/logoCloft.png" width="120" height="120"> -->
+                <svg id="logo" style="width: 120px; height: 120px;" version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="174.000000pt" height="179.000000pt" viewBox="0 0 174.000000 179.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,179.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M700 1751 c-541 -119 -822 -695 -577 -1186 136 -274 399 -443 717
+-462 330 -19 677 205 803 520 63 156 74 385 28 542 -83 283 -309 501 -598 576
+-114 29 -267 34 -373 10z m365 -75 c33 -9 103 -37 155 -63 170 -85 319 -258
+376 -437 93 -294 13 -599 -211 -803 -156 -143 -348 -212 -555 -200 -122 7
+-193 26 -310 83 -82 40 -108 60 -190 143 -108 108 -163 200 -202 337 -31 111
+-32 286 0 397 68 239 234 424 462 515 97 39 176 51 300 48 63 -2 142 -11 175
+-20z"/>
+<path d="M713 1580 c-234 -61 -405 -226 -485 -466 -18 -57 -23 -91 -23 -189 0
+-205 56 -339 204 -485 123 -122 248 -180 424 -197 l67 -6 0 36 c0 35 -1 36
+-47 42 -114 14 -163 27 -238 64 -188 93 -305 258 -336 472 -11 75 -10 98 5
+175 38 194 155 353 324 438 63 32 189 66 244 66 37 0 38 1 38 35 l0 35 -52 -1
+c-29 0 -86 -9 -125 -19z"/>
+<path d="M352 903 l3 -198 174 -3 c131 -2 187 1 225 12 52 16 110 61 121 97
+12 37 24 18 27 -43 3 -63 3 -63 33 -63 l30 0 3 78 3 77 64 0 65 0 0 40 0 39
+-62 3 -63 3 -3 38 -3 37 140 0 140 0 3 -157 3 -158 33 -3 32 -3 0 160 0 161
+55 0 55 0 0 40 0 40 -265 0 -265 0 0 -60 c0 -33 -4 -60 -10 -60 -5 0 -10 4
+-10 9 0 20 -56 75 -95 92 -132 61 -280 -35 -279 -180 0 -33 7 -69 17 -88 l18
+-33 -56 0 -55 0 0 160 0 160 -40 0 -40 0 2 -197z m392 113 c98 -41 103 -177 8
+-222 -51 -24 -100 -13 -141 32 -30 33 -33 40 -29 85 6 54 27 84 73 105 38 17
+49 17 89 0z"/>
+</g>
+</svg>
+                <h1 id="title">Admin Report</h1>    
+            </div>
+        </div>
+        <div class="container">
+            <div class="card">
+                <!-- <h3>Date : date</h3> -->
+                <h3 >Date : </h3>
+                <!-- <i class="fa-regular fa-calendar-days ic" ></i> -->
+                <svg class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M152 64H296V24C296 10.75 306.7 0 320 0C333.3 0 344 10.75 344 24V64H384C419.3 64 448 92.65 448 128V448C448 483.3 419.3 512 384 512H64C28.65 512 0 483.3 0 448V128C0 92.65 28.65 64 64 64H104V24C104 10.75 114.7 0 128 0C141.3 0 152 10.75 152 24V64zM48 248H128V192H48V248zM48 296V360H128V296H48zM176 296V360H272V296H176zM320 296V360H400V296H320zM400 192H320V248H400V192zM400 408H320V464H384C392.8 464 400 456.8 400 448V408zM272 408H176V464H272V408zM128 408H48V448C48 456.8 55.16 464 64 464H128V408zM272 192H176V248H272V192z"/></svg>
+
+                <div class="toolTipDate"><p class="valueDate">{{date}}</p></div>
+
+            </div>
+            <div class="card">
+                <!-- <h3>Data ingested : dataIngested</h3> -->
+                <h3>Data ingested :</h3>
+                <!-- <i class="fa-solid fa-database ic"></i> -->
+                <svg class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M448 80V128C448 172.2 347.7 208 224 208C100.3 208 0 172.2 0 128V80C0 35.82 100.3 0 224 0C347.7 0 448 35.82 448 80zM393.2 214.7C413.1 207.3 433.1 197.8 448 186.1V288C448 332.2 347.7 368 224 368C100.3 368 0 332.2 0 288V186.1C14.93 197.8 34.02 207.3 54.85 214.7C99.66 230.7 159.5 240 224 240C288.5 240 348.3 230.7 393.2 214.7V214.7zM54.85 374.7C99.66 390.7 159.5 400 224 400C288.5 400 348.3 390.7 393.2 374.7C413.1 367.3 433.1 357.8 448 346.1V432C448 476.2 347.7 512 224 512C100.3 512 0 476.2 0 432V346.1C14.93 357.8 34.02 367.3 54.85 374.7z"/></svg>
+
+                <div class="toolTip"><p class="value">{{dataIngested}}</p></div>
+
+            </div>
+            <div class="card">
+                <!-- <h3>Average steps : avgSteps</h3> -->
+                <h3>Average steps :</h3>
+                <!-- <i class="fa-solid fa-shoe-prints ic" ></i> -->
+                <svg class="ic" style="width:80px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M192 159.1L224 159.1V32L192 32c-35.38 0-64 28.62-64 63.1S156.6 159.1 192 159.1zM0 415.1c0 35.37 28.62 64.01 64 64.01l32-.0103v-127.1l-32-.0005C28.62 351.1 0 380.6 0 415.1zM337.5 287.1c-35 0-76.25 13.12-104.8 31.1C208 336.4 188.3 351.1 128 351.1v128l57.5 15.98c26.25 7.25 53 13.13 80.38 15.01c32.63 2.375 65.63 .743 97.5-6.132C472.9 481.2 512 429.2 512 383.1C512 319.1 427.9 287.1 337.5 287.1zM491.4 7.252c-31.88-6.875-64.88-8.625-97.5-6.25C366.5 2.877 339.8 8.752 313.5 16L256 32V159.1c60.25 0 80 15.62 104.8 31.1c28.5 18.87 69.75 31.1 104.8 31.1C555.9 223.1 640 191.1 640 127.1C640 82.75 600.9 30.75 491.4 7.252z"/></svg>
+
+                <div class="toolTip"><p class="value">{{avgSteps}}</p></div>
+
+            </div>
+            <div class="card">
+                <!-- <h3>Total alarms : alarms</h3> -->
+                <h3>Total alarms :</h3>
+                <!-- <i class="fa-solid fa-bell ic" ></i> -->
+                <svg class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M256 32V51.2C329 66.03 384 130.6 384 208V226.8C384 273.9 401.3 319.2 432.5 354.4L439.9 362.7C448.3 372.2 450.4 385.6 445.2 397.1C440 408.6 428.6 416 416 416H32C19.4 416 7.971 408.6 2.809 397.1C-2.353 385.6-.2883 372.2 8.084 362.7L15.5 354.4C46.74 319.2 64 273.9 64 226.8V208C64 130.6 118.1 66.03 192 51.2V32C192 14.33 206.3 0 224 0C241.7 0 256 14.33 256 32H256zM224 512C207 512 190.7 505.3 178.7 493.3C166.7 481.3 160 464.1 160 448H288C288 464.1 281.3 481.3 269.3 493.3C257.3 505.3 240.1 512 224 512z"/></svg>
+
+                <div class="toolTip"><p class="value">{{alarms}}</p></div>
+
+            </div>
+            <div class="card">
+                <!-- <h3>Common Users : commonUsers</h3> -->
+                <h3>Common Users :</h3>
+                <!-- <i class="fa-solid fa-user ic" ></i> -->
+                <svg class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/></svg>
+
+                <div class="toolTip"><p class="value">{{commonUsers}}</p></div>
+
+
+            </div>
+            <div class="card">
+                <!-- <h3>Admin Users : admins</h3> -->
+                <h3>Admin Users :</h3>
+                <!-- <i class="fa-solid fa-user-shield ic" ></i> -->
+                <svg class="ic"  style="width:80px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M622.3 271.1l-115.1-45.01c-4.125-1.629-12.62-3.754-22.25 0L369.8 271.1C359 275.2 352 285.1 352 295.1c0 111.6 68.75 188.8 132.9 213.9c9.625 3.75 18 1.625 22.25 0C558.4 489.9 640 420.5 640 295.1C640 285.1 633 275.2 622.3 271.1zM496 462.4V273.2l95.5 37.38C585.9 397.8 530.6 446 496 462.4zM224 256c70.7 0 128-57.31 128-128S294.7 0 224 0C153.3 0 96 57.31 96 128S153.3 256 224 256zM320.6 310.3C305.9 306.3 290.6 304 274.7 304H173.3C77.61 304 0 381.7 0 477.4C0 496.5 15.52 512 34.66 512H413.3c3.143 0 5.967-1.004 8.861-1.789C369.7 469.8 324.1 400.3 320.6 310.3z"/></svg>
+
+                <div class="toolTip"><p class="value">{{admins}}</p></div>
+
+            </div>
+            </div>
+    </div>
+</body>
+</html>

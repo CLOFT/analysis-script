@@ -78,6 +78,7 @@ export const analyseData = async () => {
     alarms,
     commonUsers,
     admins,
+    date: new Date().toISOString().split('T')[0],
   };
 
   // const fileDate = await generatePdf(data);

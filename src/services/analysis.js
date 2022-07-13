@@ -53,7 +53,7 @@ const getUserZodiacSign = (user) => {
   let birthMonth = user.birth.split('-')[1];
   let birthDay = user.birth.split('-')[2];
   let sign = zodiac.getSignByDate({ day: birthDay, month: birthMonth });
-  return sign;
+  return sign.name;
 };
 
 export const analyseData = async () => {
@@ -93,6 +93,8 @@ export const analyseData = async () => {
 
   for (const b of associatedBracelets) {
     let user = await users.getUser(b.username);
+    user.birth = user.birth.split('T')[0];
+
     // retrieve zodiac sign by birth date
     let sign = getUserZodiacSign(user);
 

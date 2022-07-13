@@ -19,7 +19,7 @@ const getAssociatedBracelets = async () => {
 const updateBraceletSerendipity = async (bracelet) => {
   let data;
   try {
-    let result = await axios.put(constants.API_GATEWAY + 'Bracelets');
+    let result = await axios.put(constants.API_GATEWAY + 'Bracelets', bracelet);
     data = result.data;
   } catch (error) {
     console.log(error);
